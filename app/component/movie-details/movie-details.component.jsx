@@ -1,5 +1,4 @@
-import { useSearchParams } from "react-router-dom";
-import { Link } from "@remix-run/react";
+import { Link, useSearchParams } from "@remix-run/react";
 import MovieDetailsStyle from "./movie-details.style.css";
 import PropTypes from "prop-types";
 
@@ -80,6 +79,6 @@ MovieDetails.propTypes = {
 	description: PropTypes.string.isRequired,
 };
 
-export function link() {
+export function links() {
 	return [{ rel: "stylesheet", href: MovieDetailsStyle }];
 }

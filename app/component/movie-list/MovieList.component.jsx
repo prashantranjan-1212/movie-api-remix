@@ -1,40 +1,28 @@
-import { useEffect } from "react";
-import { useState } from "react";
-import { useSearchParams } from "@remix-run/react";
-
+import { useLoaderData, useSearchParams } from "@remix-run/react";
 import MovieListStyle from "./MovieList.style.css";
 
-import SearchForm from "../search-form/search-form.component";
-import GenreSelect from "../genre-select/genre-select.component";
-import SortControl from "../sort-control/sort-control.component";
-import MovieTile from "../movie-tile/movie-tile.component";
+import SearchForm, {
+	links as SearchFormStyle,
+} from "../search-form/search-form.component";
+import GenreSelect, {
+	links as GenreSelectStyle,
+} from "../genre-select/genre-select.component";
+import SortControl, {
+	links as SortControlStyle,
+} from "../sort-control/sort-control.component";
+import MovieTile, {
+	links as MovieTileStyle,
+} from "../movie-tile/movie-tile.component";
 
 export default function MovieList() {
-	const [movieList, setMovieList] = useState([]);
 	const genres = ["action", "adventure", "comedy", "crime", "family"];
 
+	const movieList = useLoaderData();
 	const [searchParams, setSearchParams] = useSearchParams();
+
 	const movieSearched = searchParams.get("query");
 	const genre = searchParams.get("genre");
 	const sortBy = searchParams.get("sortBy");
-
-	useEffect(() => {
-		const url = getUrl();
-		console.log(url);
-		fetch(url)
-			.then((response) => {
-				if (!response.ok) {
-					throw new Error("failed to fetch.....");
-				}
-				return response.json();
-			})
-			.then((data) => {
-				setMovieList(data.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
-	}, [movieSearched, sortBy, genre]);
 
 	const sortHandler = (value) => {
 		const queryParam = removeNullQueryValue();
@@ -80,53 +68,6 @@ export default function MovieList() {
 		return queryParam;
 	};
 
-	const getUrl = () => {
-		let url;
-		if (movieSearched === null && genre === null && sortBy === null) {
-			url = `http://localhost:4000/movies`;
-		} else if (
-			movieSearched !== null &&
-			genre === null &&
-			sortBy === null
-		) {
-			url = `http://localhost:4000/movies?searchBy=title&search=${movieSearched}`;
-		} else if (
-			movieSearched === null &&
-			genre !== null &&
-			sortBy === null
-		) {
-			url = `http://localhost:4000/movies?searchBy=genres&filter=${genre}`;
-		} else if (
-			movieSearched === null &&
-			genre === null &&
-			sortBy !== null
-		) {
-			url = `http://localhost:4000/movies?sortOrder=asc&sortBy=${sortBy}`;
-		} else if (
-			movieSearched !== null &&
-			genre !== null &&
-			sortBy === null
-		) {
-			url = `http://localhost:4000/movies?searchBy=title&search=${movieSearched}&filter=${genre}`;
-		} else if (
-			movieSearched !== null &&
-			genre === null &&
-			sortBy !== null
-		) {
-			url = `http://localhost:4000/movies?searchBy=title&search=${movieSearched}&sortOrder=asc&sortBy=${sortBy}`;
-		} else if (
-			movieSearched === null &&
-			genre !== null &&
-			sortBy !== null
-		) {
-			url = `http://localhost:4000/movies?sortOrder=asc&sortBy=${sortBy}&searchBy=genres&filter=${genre}`;
-		} else {
-			url = `http://localhost:4000/movies?searchBy=title&search=${movieSearched}&sortOrder=asc&sortBy=${sortBy}&filter=${genre}`;
-		}
-
-		return url;
-	};
-
 	return (
 		<>
 			<SearchForm
@@ -149,24 +90,32 @@ export default function MovieList() {
 			</div>
 
 			<div className="movie-tile-conatiner">
-				{movieList.map((movie) => {
-					return (
-						<MovieTile
-							key={movie.id}
-							movieId={movie.id}
-							imageUrl={movie.poster_path}
-							movieName={movie.title}
-							releaseDate={movie.release_date}
-							genres={movie.genres}
-							scrollUp={scrollHandler}
-						/>
-					);
-				})}
+				{movieList != null
+					? movieList.map((movie) => {
+							return (
+								<MovieTile
+									key={movie.id}
+									movieId={movie.id}
+									imageUrl={movie.poster_path}
+									movieName={movie.title}
+									releaseDate={movie.release_date}
+									genres={movie.genres}
+									scrollUp={scrollHandler}
+								/>
+							);
+					  })
+					: ""}
 			</div>
 		</>
 	);
 }
 
 export function links() {
-	return [{ rel: "stylesheet", href: MovieListStyle }];
+	return [
+		{ rel: "stylesheet", href: MovieListStyle },
+		...GenreSelectStyle(),
+		...MovieTileStyle(),
+		...SearchFormStyle(),
+		...SortControlStyle(),
+	];
 }

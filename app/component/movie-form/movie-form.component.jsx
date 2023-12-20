@@ -2,11 +2,11 @@ import MovieFormStyle from "./movie-form.style.css";
 
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
+import { Form } from "@remix-run/react";
 
-export default function MovieForm({ movieInfo, submit }) {
+export default function MovieForm({ movieInfo }) {
 	const form = useForm();
-	const { register, control, handleSubmit, formState } = form;
+	const { register, handleSubmit, formState } = form;
 	const { errors } = formState;
 
 	const title = movieInfo !== null ? movieInfo.title : "";
@@ -17,17 +17,17 @@ export default function MovieForm({ movieInfo, submit }) {
 	const runtime = movieInfo !== null ? movieInfo.runtime : "";
 	const overview = movieInfo !== null ? movieInfo.overview : "";
 
-	const handleMovieSubmit = (data) => {
-		console.log("Data Submitted", data);
-		submit(data);
-	};
+	// const handleMovieSubmit = (data) => {
+	// 	console.log("Data Submitted", data);
+	// 	submit(data);
+	// };
 
 	return (
 		<div
 			className="movie-form-container"
 			data-testid="movie-form-container"
 		>
-			<form onSubmit={handleSubmit(handleMovieSubmit)}>
+			<Form method="post">
 				<div className="form-controls">
 					<label
 						htmlFor="title"
@@ -214,8 +214,7 @@ export default function MovieForm({ movieInfo, submit }) {
 						SUBMIT
 					</button>
 				</div>
-			</form>
-			<DevTool control={control} />
+			</Form>
 		</div>
 	);
 }
