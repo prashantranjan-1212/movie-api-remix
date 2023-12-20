@@ -1,0 +1,54 @@
+.movie-form-container {
+	margin: 0 auto;
+	padding: 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: gainsboro;
+}
+
+label {
+	display: flex;
+	flex-flow: wrap;
+	margin-top: 10px;
+	font-size: large;
+	font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="url"],
+input[type="number"],
+select,
+textarea {
+	width: 100%;
+	padding: 5px;
+	margin: 5px 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.form-submit-button {
+	background-color: rgb(217 61 61);
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.form-close-link {
+	background-color: rgb(217 61 61);
+	text-decoration: none;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 4px;
+	cursor: pointer;
+	margin: 10px;
+}
+
+.form-error-message {
+	color: rgb(217 61 61);
+	text-align: center;
+	font-weight: bold;
+}

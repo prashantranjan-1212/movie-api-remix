@@ -1,0 +1,22 @@
+.search-form {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.search-box {
+	height: 35px;
+	width: 70%;
+	margin: 10px;
+	opacity: 0.7;
+}
+
+.search-button {
+	background-color: rgb(217 61 61);
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 4px;
+	cursor: pointer;
+}

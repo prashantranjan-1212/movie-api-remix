@@ -1,0 +1,40 @@
+.dialog-conatiner {
+	width: 70%;
+	display: inline-block;
+	margin: 10px;
+	border: 1px solid rgb(250, 178, 192);
+	border-radius: 10px;
+	background-color: floralwhite;
+}
+
+.delete-movie-confirm-button {
+	background-color: rgb(217, 61, 61);
+	color: white;
+	border: none;
+	text-decoration: none;
+	padding: 10px 20px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: medium;
+}
+
+.dialog-header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 10px;
+}
+
+.dialog-title {
+	display: inline-flex;
+	flex-direction: row;
+	font-size: x-large;
+	font-weight: bold;
+	padding-left: 10px;
+	color: rgb(217 61 61);
+}
+
+.dialog-button {
+	text-decoration: none;
+	color: black;
+}

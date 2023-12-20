@@ -1,0 +1,20 @@
+.header-conatiner {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 10px;
+}
+
+.heading {
+	display: flex;
+	color: rgb(217, 61, 61);
+	text-decoration: none;
+	padding: 10px 20px;
+	justify-content: start;
+}
+
+.movie-control-button {
+	display: flex;
+	flex-direction: row;
+	justify-content: end;
+}

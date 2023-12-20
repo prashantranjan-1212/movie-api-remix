@@ -1,0 +1,20 @@
+.sort-control {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.sort-control-label {
+	display: inline-block;
+	color: white;
+	margin: 10px;
+	font-size: medium;
+}
+
+.sort-control-option {
+	margin-right: 10px;
+	border: none;
+	background: rgb(39, 37, 37);
+	color: white;
+	font-size: medium;
+}

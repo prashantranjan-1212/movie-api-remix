@@ -1,0 +1,14 @@
+.genre-button {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.genre-selected-button {
+	display: inline-block;
+	color: rgb(250, 248, 248);
+	border: none;
+	padding: 10px 20px;
+	border-radius: 4px;
+	cursor: pointer;
+}

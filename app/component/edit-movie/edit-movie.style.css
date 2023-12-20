@@ -1,0 +1,10 @@
+.edit-movie-button {
+	background-color: rgb(217 61 61);
+	text-decoration: none;
+	color: white;
+	border: none;
+	padding: 2px 2px;
+	border-radius: 4px;
+	cursor: pointer;
+	margin: 10px;
+}
