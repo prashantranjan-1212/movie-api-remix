@@ -1,3 +1,3 @@
-export default function DeleteMovie({ param }) {
-	return <h1>Delete Movie with Id : {param.movieId}</h1>;
+export default function DeleteMovie() {
+	return <h1>Delete Movie with Id</h1>;
 }
