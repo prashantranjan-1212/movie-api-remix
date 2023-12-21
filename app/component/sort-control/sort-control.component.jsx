@@ -1,3 +1,4 @@
+import { Form } from "@remix-run/react";
 import SortControlStyle from "./sort-control.style.css";
 
 import PropTypes from "prop-types";
@@ -9,17 +10,23 @@ export default function SortControl({
 	onSortControl,
 }) {
 	return (
-		<div className="sort-control">
-			<label className="sort-control-label">SORT BY : </label>
+		<Form className="sort-control">
+			<button
+				className="sort-control-button"
+				type="hidden"
+			>
+				SORT BY :{" "}
+			</button>
 			<select
 				className="sort-control-option"
+				name="sortBy"
 				onChange={(event) => onSortControl(event.target.value)}
 				defaultValue={sortBy !== null ? sortBy : releaseDate}
 			>
 				<option value={title}>TITLE</option>
 				<option value={releaseDate}>RELEASE DATE</option>
 			</select>
-		</div>
+		</Form>
 	);
 }
 

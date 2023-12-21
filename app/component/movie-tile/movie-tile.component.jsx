@@ -20,27 +20,8 @@ export default function MovieTile({
 }) {
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	// const removeNullQueryValue = () => {
-	// 	const array = [];
-	// 	const queryParam = new URLSearchParams(searchParams);
-
-	// 	for (const name of queryParam.keys()) {
-	// 		const value = queryParam.get(name);
-	// 		if (value === "" || value === null) {
-	// 			array.push(name);
-	// 		}
-	// 	}
-
-	// 	array.forEach((val) => {
-	// 		queryParam.delete(val);
-	// 	});
-
-	// 	setSearchParams(queryParam);
-	// };
-
 	return (
 		<div className="movie-tile-poster">
-			{console.log(searchParams)}
 			<img
 				src={imageUrl}
 				alt={movieName}

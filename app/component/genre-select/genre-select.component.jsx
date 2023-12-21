@@ -1,4 +1,4 @@
-import { useNavigate } from "@remix-run/react";
+import { Form, useNavigate } from "@remix-run/react";
 import GenreSelectStyle from "./genre-select.style.css";
 
 import PropTypes from "prop-types";
@@ -6,12 +6,14 @@ import PropTypes from "prop-types";
 export default function GenreSelect({ genres, selectedGenre, onSelect }) {
 	const navigate = useNavigate();
 	return (
-		<div className="genre-button">
+		<Form className="genre-button">
 			{genres.map((genre, index) => {
 				return (
 					<button
 						className="genre-selected-button"
 						key={index}
+						name="genre"
+						value={genre}
 						data-testid={genre}
 						onClick={() => onSelect(genre)}
 						style={{
@@ -25,7 +27,7 @@ export default function GenreSelect({ genres, selectedGenre, onSelect }) {
 					</button>
 				);
 			})}
-		</div>
+		</Form>
 	);
 }
 

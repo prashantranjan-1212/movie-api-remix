@@ -8,15 +8,11 @@ export default function SearchForm({ searchValue, searchHandler }) {
 	const [searchedValue, setSearchedValue] = useState(searchValue);
 
 	return (
-		<Form
-			action="/?query"
-			method="GET"
-			navigate={false}
-			className="search-form"
-		>
+		<Form className="search-form">
 			<input
 				data-testid="search-input"
 				className="search-box"
+				name="query"
 				type="search"
 				value={searchedValue !== null ? searchedValue : ""}
 				onChange={(event) =>
@@ -27,7 +23,6 @@ export default function SearchForm({ searchValue, searchHandler }) {
 				type="submit"
 				data-testid="search-button"
 				className="search-button"
-				//onClick={() => searchHandler(searchedValue)}
 			>
 				SEARCH
 			</button>

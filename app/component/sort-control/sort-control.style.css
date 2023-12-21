@@ -18,3 +18,13 @@
 	color: white;
 	font-size: medium;
 }
+
+.sort-control-button {
+	display: inline-block;
+	background-color: rgb(39, 37, 37);
+	color: #faf8f8;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 4px;
+	cursor: pointer;
+}
