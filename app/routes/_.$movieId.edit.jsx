@@ -19,6 +19,8 @@ export default function EditMovie() {
 
 	return (
 		<>
+			{" "}
+			{console.log(movie)}
 			{openDialog && (
 				<Dialog
 					title={"EDIT MOVIE"}
@@ -34,6 +36,7 @@ export default function EditMovie() {
 export async function loader({ params }) {
 	const movieId = params.movieId;
 	const URL = `${APP_URL}/movies/${movieId}`;
+	console.log("Movie Edit");
 	console.log(URL);
 	const res = await fetch(URL);
 

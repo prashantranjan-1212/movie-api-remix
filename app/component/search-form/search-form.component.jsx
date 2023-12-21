@@ -2,12 +2,18 @@ import PropTypes from "prop-types";
 import SearchFormStyle from "./search-form.style.css";
 
 import { useState } from "react";
+import { Form } from "@remix-run/react";
 
 export default function SearchForm({ searchValue, searchHandler }) {
 	const [searchedValue, setSearchedValue] = useState(searchValue);
 
 	return (
-		<div className="search-form">
+		<Form
+			action="/?query"
+			method="GET"
+			navigate={false}
+			className="search-form"
+		>
 			<input
 				data-testid="search-input"
 				className="search-box"
@@ -18,13 +24,14 @@ export default function SearchForm({ searchValue, searchHandler }) {
 				}
 			></input>
 			<button
+				type="submit"
 				data-testid="search-button"
 				className="search-button"
-				onClick={() => searchHandler(searchedValue)}
+				//onClick={() => searchHandler(searchedValue)}
 			>
 				SEARCH
 			</button>
-		</div>
+		</Form>
 	);
 }
 
@@ -35,4 +42,12 @@ SearchForm.propTypes = {
 
 export function links() {
 	return [{ rel: "stylesheet", href: SearchFormStyle }];
+}
+
+export async function action({ request }) {
+	const formData = await request.formData();
+	const data = Object.fromEntries(formData);
+
+	console.log(data);
+	return redirect("/");
 }

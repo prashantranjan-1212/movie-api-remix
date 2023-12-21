@@ -19,6 +19,7 @@ import MovieTile, {
 } from "../component/movie-tile/movie-tile.component";
 
 import { Link, Outlet, useLoaderData, useSearchParams } from "@remix-run/react";
+import { redirect } from "@remix-run/node";
 
 export default function Index() {
 	const genres = ["action", "adventure", "comedy", "crime", "family"];

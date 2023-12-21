@@ -3,8 +3,12 @@ import MovieTileStyle from "./movie-tile.style.css";
 import { Link, useSearchParams } from "@remix-run/react";
 import PropTypes from "prop-types";
 
-import EditMovie from "../edit-movie/edit-movie.component";
-import DeleteMovie from "../delete-movie/delete-movie.component";
+import EditMovie, {
+	links as EditMovieStyle,
+} from "../edit-movie/edit-movie.component";
+import DeleteMovie, {
+	links as DeleteMovieStyle,
+} from "../delete-movie/delete-movie.component";
 
 export default function MovieTile({
 	movieId,
@@ -16,26 +20,27 @@ export default function MovieTile({
 }) {
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	const removeNullQueryValue = () => {
-		const array = [];
-		const queryParam = new URLSearchParams(searchParams);
+	// const removeNullQueryValue = () => {
+	// 	const array = [];
+	// 	const queryParam = new URLSearchParams(searchParams);
 
-		for (const name of queryParam.keys()) {
-			const value = queryParam.get(name);
-			if (value === "" || value === null) {
-				array.push(name);
-			}
-		}
+	// 	for (const name of queryParam.keys()) {
+	// 		const value = queryParam.get(name);
+	// 		if (value === "" || value === null) {
+	// 			array.push(name);
+	// 		}
+	// 	}
 
-		array.forEach((val) => {
-			queryParam.delete(val);
-		});
+	// 	array.forEach((val) => {
+	// 		queryParam.delete(val);
+	// 	});
 
-		setSearchParams(queryParam);
-	};
+	// 	setSearchParams(queryParam);
+	// };
 
 	return (
 		<div className="movie-tile-poster">
+			{console.log(searchParams)}
 			<img
 				src={imageUrl}
 				alt={movieName}
@@ -77,5 +82,9 @@ MovieTile.propTypes = {
 };
 
 export function links() {
-	return [{ rel: "stylesheet", href: MovieTileStyle }];
+	return [
+		{ rel: "stylesheet", href: MovieTileStyle },
+		...EditMovieStyle(),
+		...DeleteMovieStyle(),
+	];
 }

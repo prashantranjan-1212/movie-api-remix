@@ -1,8 +1,10 @@
+import { useNavigate } from "@remix-run/react";
 import GenreSelectStyle from "./genre-select.style.css";
 
 import PropTypes from "prop-types";
 
 export default function GenreSelect({ genres, selectedGenre, onSelect }) {
+	const navigate = useNavigate();
 	return (
 		<div className="genre-button">
 			{genres.map((genre, index) => {

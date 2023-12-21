@@ -18,7 +18,6 @@ export default function Movie() {
 				duration={movie.runtime}
 				description={movie.overview}
 			/>
-			<Outlet />
 		</>
 	);
 }
@@ -26,7 +25,7 @@ export default function Movie() {
 export async function loader({ params }) {
 	const movieId = params.movieId;
 	const URL = `${APP_URL}/movies/${movieId}`;
-	console.log(URL);
+
 	const res = await fetch(URL);
 
 	if (!res.ok) {
